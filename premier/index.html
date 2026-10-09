@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Igor Belyaev — Étudiant en informatique, Cloud & DevOps</title>
+  <meta name="description" content="Igor Belyaev, étudiant en licence d'informatique (double diplôme Université de Lille × USTH), intéressé par le cloud et le DevOps.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="#intro" class="logo" aria-label="Retour en haut">IB</a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <nav id="menu" class="overlay" aria-hidden="true">
+    <ul class="menu-list">
+      <li><a href="#intro">Accueil</a></li>
+      <li><a href="#about">À propos</a></li>
+      <li><a href="#focus">Domaines</a></li>
+      <li><a href="#skills">Compétences</a></li>
+      <li><a href="#education">Formation</a></li>
+      <li><a href="#projects">Projets</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <section id="intro" class="intro">
+      <div class="intro-content">
+        <h1>Igor Belyaev</h1>
+        <p class="intro-subtitle">Étudiant en informatique &middot; Cloud &amp; DevOps</p>
+
+        <!-- Schéma d'infrastructure qui grandit avec la largeur de la fenêtre -->
+        <svg class="icons" aria-hidden="true">
+          <symbol id="i-server" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="7" rx="1"/><rect x="3" y="13" width="18" height="7" rx="1"/><path d="M7 7.5h.01M7 16.5h.01"/></symbol>
+          <symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></symbol>
+          <symbol id="i-lb" viewBox="0 0 24 24"><circle cx="5" cy="12" r="2.5"/><path d="M7.5 12H12M12 12l7-6M12 12l7 6M12 12h7"/></symbol>
+          <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14c2.5 0 4.5 2 4.5 5"/></symbol>
+          <symbol id="i-cdn" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/></symbol>
+          <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 17l5-6 4 4 5-7 4 5"/></symbol>
+        </svg>
+
+        <div class="infra" aria-hidden="true">
+          <div class="infra-row">
+            <div class="node n-users"><svg><use href="#i-users"/></svg>utilisateurs</div>
+            <span class="link l-users"></span>
+            <div class="node n-cdn"><svg><use href="#i-cdn"/></svg>cdn</div>
+            <span class="link l-cdn"></span>
+            <div class="node n-lb"><svg><use href="#i-lb"/></svg>load balancer</div>
+            <span class="link l-lb"></span>
+            <div class="pool">
+              <span class="pool-label">auto-scaling</span>
+              <div class="node server"><svg><use href="#i-server"/></svg>web-1</div>
+              <div class="node server s2"><svg><use href="#i-server"/></svg>web-2</div>
+              <div class="node server s3"><svg><use href="#i-server"/></svg>web-3</div>
+              <div class="node server s4"><svg><use href="#i-server"/></svg>web-4</div>
+              <div class="node server s5"><svg><use href="#i-server"/></svg>web-5</div>
+              <div class="node server s6"><svg><use href="#i-server"/></svg>web-6</div>
+            </div>
+            <span class="link l-db"></span>
+            <div class="db">
+              <div class="node n-db"><svg><use href="#i-db"/></svg>postgres</div>
+              <div class="node n-replica"><svg><use href="#i-db"/></svg>réplique</div>
+            </div>
+          </div>
+          <div class="monitoring"><svg><use href="#i-chart"/></svg>monitoring &middot; métriques &middot; logs &middot; alertes</div>
+        </div>
+
+        <p class="infra-caption">
+          <span class="c1">Un serveur. Tout va bien… tant que personne ne vient.</span>
+          <span class="c2">L'application et la base de données sont séparées.</span>
+          <span class="c3">Un répartiteur de charge partage le trafic entre 2 serveurs.</span>
+          <span class="c4">Plus d'utilisateurs, donc 3 serveurs.</span>
+          <span class="c5">4 serveurs et une réplique de la base de données.</span>
+          <span class="c6">Un CDN sert les fichiers statiques au plus près des utilisateurs.</span>
+          <span class="c7">Et on surveille tout : métriques, logs, alertes.</span>
+          <span class="c8">Mise à l'échelle automatique : 6 serveurs.</span>
+        </p>
+        <p class="infra-hint">&harr; Élargissez la fenêtre pour faire grandir l'infrastructure</p>
+
+        <a href="#about" class="btn btn-light">En savoir plus</a>
+      </div>
+    </section>
+
+    <section id="about" class="section section-light">
+      <div class="container narrow reveal">
+        <h2 class="section-title">À propos</h2>
+        <p class="lead">Bonjour, je suis Igor.</p>
+        <p>Je suis en troisième année de licence d'informatique dans le cadre d'un double diplôme entre
+          l'<strong>Université de Lille</strong> et l'<strong>USTH</strong> (Université des Sciences et des Technologies de Hanoï, Vietnam).
+          Ce qui m'intéresse le plus, c'est ce qui se passe une fois le code écrit : comment une application est déployée,
+          comment elle tient la charge et comment on la maintient en fonctionnement.</p>
+        <p>Les cours de réseaux ont renforcé cet intérêt, et c'est naturellement vers le cloud et le DevOps que je me tourne.
+          Je souhaite poursuivre en master d'informatique pour me spécialiser dans ce domaine :
+          infrastructures cloud, automatisation et fiabilité des systèmes.</p>
+        <p class="muted">En dehors de l'informatique, j'aime voyager — étudier à Hanoï en fait partie.</p>
+      </div>
+    </section>
+
+    <section id="focus" class="section section-white">
+      <div class="container reveal">
+        <h2 class="section-title">Ce qui m'intéresse</h2>
+        <div class="cards">
+          <article class="card">
+            <h3>Infrastructure cloud</h3>
+            <p>Comprendre comment les services en ligne sont hébergés et passent à l'échelle : machines virtuelles, stockage, réseau.</p>
+          </article>
+          <article class="card">
+            <h3>CI/CD et automatisation</h3>
+            <p>Automatiser le build, les tests et le déploiement pour livrer plus souvent et avec moins d'erreurs.</p>
+          </article>
+          <article class="card">
+            <h3>Infrastructure as Code</h3>
+            <p>Décrire l'infrastructure dans du code versionné avec Git, pour qu'elle soit reproductible et relisible.</p>
+          </article>
+          <article class="card">
+            <h3>Linux et réseaux</h3>
+            <p>Les fondations de tout le reste : l'environnement Linux, que je pratique, et les réseaux, que j'étudie en cours.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section section-light">
+      <div class="container reveal">
+        <h2 class="section-title">Compétences</h2>
+        <div class="skill-groups">
+          <div class="skill-group">
+            <h3>Langages</h3>
+            <ul class="tags">
+              <li>Java</li><li>SQL</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>Outils</h3>
+            <ul class="tags">
+              <li>Linux</li><li>Git</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <h3>Langues</h3>
+            <ul class="tags">
+              <li>Russe — langue maternelle</li><li>Français — C1</li><li>Anglais — B2</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education" class="section section-dark">
+      <div class="container">
+        <h2 class="section-title">Formation</h2>
+        <ol class="timeline">
+          <li class="timeline-item reveal">
+            <span class="timeline-date">2026 — aujourd'hui</span>
+            <div class="timeline-content">
+              <h3>Licence 3 Informatique</h3>
+              <p class="timeline-role">Double diplôme Université de Lille × USTH, Hanoï (Vietnam)</p>
+              <p>Parmi les cours : réseaux informatiques.</p>
+            </div>
+          </li>
+          <li class="timeline-item reveal">
+            <span class="timeline-date">2025 — 2026</span>
+            <div class="timeline-content">
+              <h3>Licence 2 Informatique</h3>
+              <p class="timeline-role">Université de Lille</p>
+            </div>
+          </li>
+          <li class="timeline-item reveal">
+            <span class="timeline-date">2024 — 2025</span>
+            <div class="timeline-content">
+              <h3>Licence 1 Informatique – Mathématiques</h3>
+              <p class="timeline-role">Université de Lille</p>
+            </div>
+          </li>
+          <li class="timeline-item reveal">
+            <span class="timeline-date">2023 — 2024</span>
+            <div class="timeline-content">
+              <h3>CPGE MP2I</h3>
+              <p class="timeline-role">Lycée Louis Thuillier, Amiens</p>
+            </div>
+          </li>
+          <li class="timeline-item reveal">
+            <span class="timeline-date">2020 — 2023</span>
+            <div class="timeline-content">
+              <h3>Baccalauréat général</h3>
+              <p class="timeline-role">Lycée Jan Lavezzari, Berck</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="projects" class="section section-white">
+      <div class="container reveal">
+        <h2 class="section-title">Projets</h2>
+        <div class="projects">
+          <article class="project">
+            <div class="project-cover">this-site</div>
+            <div class="project-body">
+              <h3>Ce site</h3>
+              <p>Site CV statique, sans framework. Servi par nginx dans un conteneur Docker sans root, testé et déployé automatiquement par GitHub Actions sur un VPS, derrière Caddy pour le HTTPS.</p>
+              <ul class="tags small"><li>Docker</li><li>nginx</li><li>GitHub Actions</li><li>Caddy</li><li>HTML/CSS/JS</li></ul>
+              <!-- TODO: lien GitHub -->
+            </div>
+          </article>
+          <!-- TODO: autres projets -->
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section section-dark contact">
+      <div class="container narrow reveal">
+        <h2 class="section-title">Contact</h2>
+        <p class="lead">N'hésitez pas à me contacter.</p>
+        <ul class="contact-links">
+          <li><a href="mailto:igor.belyaev1899@gmail.com">igor.belyaev1899@gmail.com</a></li>
+          <!-- TODO: liens GitHub / LinkedIn -->
+        </ul>
+        <a href="cv.pdf" class="btn btn-accent">Télécharger le CV (PDF)</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year">2026</span> Igor Belyaev</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

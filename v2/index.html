@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Igor Belyaev</title>
+  <meta name="description" content="Igor Belyaev, étudiant en troisième année d'informatique (Université de Lille et USTH, Hanoï), en route vers le cloud et le DevOps.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Montserrat:wght@500;700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <a href="#intro" class="logo">IB</a>
+  <button class="toggle" aria-expanded="false" aria-controls="menu" aria-label="Menu">
+    <span class="line"></span><span class="line"></span><span class="line"></span>
+  </button>
+
+  <nav id="menu" class="overlay" aria-hidden="true">
+    <ul class="menu">
+      <li><a href="#intro">Accueil</a></li>
+      <li><a href="#about">À propos</a></li>
+      <li><a href="#parcours">Parcours</a></li>
+      <li><a href="#skills">Compétences</a></li>
+      <li><a href="#projet">Projet</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <section id="intro" class="intro">
+      <div class="bg"></div>
+      <div class="intro-body">
+        <h1 class="name"><span>Igor Belyaev</span></h1>
+        <p class="subtitle">Étudiant en informatique · Cloud &amp; DevOps</p>
+
+        <!-- la phrase change avec la largeur de la fenêtre (seuils dans main.js) -->
+        <p class="scale" aria-hidden="true">
+          <span class="scale-px"><b id="vw">1 280</b> px de large&nbsp;:</span>
+          <span id="scale-text">4 serveurs et une réplique de la base.</span>
+          <span class="scale-hint">Élargissez la fenêtre, l'infrastructure suit.</span>
+        </p>
+      </div>
+      <a href="#about" class="more">En savoir plus<span class="chevron"></span></a>
+    </section>
+
+    <section id="about" class="section dark">
+      <div class="wrap">
+        <h2>À propos</h2>
+        <span class="divider"></span>
+        <div class="text">
+          <p class="lead">Bonjour, je suis Igor.</p>
+          <p>Je suis en troisième année de licence d'informatique, dans le cadre d'un double diplôme entre
+            l'Université de Lille et l'USTH, à Hanoï. Avant, il y a eu le bac à Berck, une prépa MP2I à Amiens
+            et deux années de licence à Lille.</p>
+          <p>En cours de réseaux, j'ai compris que ce qui m'attire, c'est moins d'écrire une application que de la faire tourner&nbsp;:
+            la déployer, la surveiller, la faire tenir quand le trafic augmente. C'est pour ça que je vise un master orienté cloud et DevOps.</p>
+          <p>Ce site me sert de terrain d'entraînement&nbsp;: il tourne dans un conteneur Docker, et chaque commit le reconstruit,
+            le teste et le publie automatiquement.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="parcours" class="section grey">
+      <div class="wrap">
+        <h2>Parcours</h2>
+        <span class="divider"></span>
+
+        <ol class="timeline">
+          <li>
+            <div class="card">
+              <h3>Licence 3 Informatique</h3>
+              <p class="place">Double diplôme Université de Lille × USTH, Hanoï</p>
+              <p>Troisième année à Hanoï. Parmi les cours&nbsp;: réseaux informatiques.</p>
+            </div>
+            <span class="dot"></span>
+            <span class="date">2026 – 2027</span>
+          </li>
+          <li>
+            <div class="card">
+              <h3>Licence 1 et 2 Informatique</h3>
+              <p class="place">Université de Lille</p>
+              <p>L1 Informatique – Mathématiques, puis L2 Informatique.</p>
+            </div>
+            <span class="dot"></span>
+            <span class="date">2024 – 2026</span>
+          </li>
+          <li>
+            <div class="card">
+              <h3>CPGE MP2I</h3>
+              <p class="place">Lycée Louis Thuillier, Amiens</p>
+              <p>Classe préparatoire mathématiques, physique, informatique.</p>
+            </div>
+            <span class="dot"></span>
+            <span class="date">2023 – 2024</span>
+          </li>
+          <li>
+            <div class="card">
+              <h3>Baccalauréat général</h3>
+              <p class="place">Lycée Jan Lavezzari, Berck</p>
+            </div>
+            <span class="dot"></span>
+            <span class="date">2020 – 2023</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="skills" class="section dark">
+      <div class="wrap">
+        <h2>Compétences</h2>
+        <span class="divider"></span>
+
+        <div class="skills">
+          <div>
+            <h3>Ce que je pratique</h3>
+            <ul class="circles">
+              <li>Java</li><li>SQL</li><li>Linux</li><li>Git</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Ce que j'apprends</h3>
+            <ul class="list">
+              <li>Docker</li>
+              <li>nginx</li>
+              <li>GitHub Actions</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Langues</h3>
+            <ul class="list">
+              <li>Russe <em>langue maternelle</em></li>
+              <li>Français <em>C1</em></li>
+              <li>Anglais <em>B2</em></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projet" class="section grey">
+      <div class="wrap">
+        <h2>Projet</h2>
+        <span class="divider"></span>
+        <div class="text">
+          <h3 class="project">Ce site</h3>
+          <p>Une page écrite à la main, sans framework, servie par nginx dans un conteneur Docker.
+            À chaque <code>git push</code>, GitHub Actions construit l'image pour amd64 et arm64, la démarre,
+            vérifie que les pages, les en-têtes et la page 404 répondent correctement, puis la publie sur ghcr.io.</p>
+          <p>nginx tourne sans les droits root, dans un conteneur en lecture seule. Chaque image porte le hash
+            de son commit, ce qui permet de revenir à n'importe quelle version.</p>
+          <p class="muted">Prochaine étape&nbsp;: le déploiement automatique sur un serveur Oracle Cloud, puis un nom de domaine et HTTPS.</p>
+          <a class="btn" href="https://github.com/rogirouge/portfolio">Voir le code</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="bg"></div>
+      <div class="wrap center">
+        <h2>Contact</h2>
+        <span class="divider"></span>
+        <p>Une question, un stage, un master&nbsp;? Écrivez-moi.</p>
+        <a class="mail" href="mailto:igor.belyaev1899@gmail.com">igor.belyaev1899@gmail.com</a>
+        <a class="btn" href="https://github.com/rogirouge">GitHub</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Igor Belyaev</p>
+    <p class="credits">Photos&nbsp;: Hanoï de nuit (recadrée), NKSTTSSHNVN,
+      <a href="https://commons.wikimedia.org/wiki/File:Hanoi_by_night_-_NKS.jpg">Wikimedia Commons</a>,
+      <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.fr">CC BY-SA 4.0</a> ·
+      Train Street, Rod Waddington,
+      <a href="https://commons.wikimedia.org/wiki/File:Train_Street,_Hanoi_(50004299243).jpg">Wikimedia Commons</a>, domaine public.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

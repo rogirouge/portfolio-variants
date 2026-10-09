@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Igor Belyaev</title>
+  <meta name="description" content="Igor Belyaev, étudiant en troisième année d'informatique (Université de Lille × USTH, Hanoï), en route vers le cloud et le DevOps.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="#top" class="logo">Igor Belyaev</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#about">à propos</a>
+      <a href="#parcours">parcours</a>
+      <a href="#projet">projet</a>
+      <a href="#journal">journal</a>
+      <a href="#contact">contact</a>
+    </nav>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="menu">menu</button>
+  </header>
+
+  <nav id="menu" class="overlay" aria-hidden="true" aria-label="Menu">
+    <ul class="menu-list">
+      <li><a href="#about">À propos</a></li>
+      <li><a href="#parcours">Parcours</a></li>
+      <li><a href="#projet">Projet</a></li>
+      <li><a href="#journal">Journal</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main id="top">
+
+    <section class="hero container">
+      <h1>Igor Belyaev</h1>
+      <p class="hero-lead">Étudiant en troisième année d'informatique, entre l'Université de Lille et l'USTH à Hanoï.
+        Je me prépare à un master orienté cloud et DevOps.</p>
+
+      <svg class="icons" aria-hidden="true">
+        <symbol id="i-server" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="7" rx="1"/><rect x="3" y="13" width="18" height="7" rx="1"/><path d="M7 7.5h.01M7 16.5h.01"/></symbol>
+        <symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></symbol>
+        <symbol id="i-lb" viewBox="0 0 24 24"><circle cx="5" cy="12" r="2.5"/><path d="M7.5 12H12M12 12l7-6M12 12l7 6M12 12h7"/></symbol>
+        <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M17 14c2.5 0 4.5 2 4.5 5"/></symbol>
+        <symbol id="i-cdn" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.2 3 14.8 0 18M12 3c-3 3.2-3 14.8 0 18"/></symbol>
+        <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 17l5-6 4 4 5-7 4 5"/></symbol>
+      </svg>
+
+      <!-- Le schéma grandit avec la largeur de la fenêtre (media queries, voir style.css) -->
+      <figure class="fig">
+        <div class="dim" aria-hidden="true"><span class="dim-value">fenêtre <b id="vw">…</b> px · étape <b id="stage">…</b>/8</span></div>
+
+        <div class="infra" aria-hidden="true">
+          <div class="infra-row">
+            <div class="node n-users"><svg><use href="#i-users"/></svg>utilisateurs</div>
+            <span class="link l-users"></span>
+            <div class="node n-cdn"><svg><use href="#i-cdn"/></svg>cdn</div>
+            <span class="link l-cdn"></span>
+            <div class="node n-lb"><svg><use href="#i-lb"/></svg>load balancer</div>
+            <span class="link l-lb"></span>
+            <div class="pool">
+              <span class="pool-label">auto-scaling</span>
+              <div class="node server"><svg><use href="#i-server"/></svg>web-1</div>
+              <div class="node server s2"><svg><use href="#i-server"/></svg>web-2</div>
+              <div class="node server s3"><svg><use href="#i-server"/></svg>web-3</div>
+              <div class="node server s4"><svg><use href="#i-server"/></svg>web-4</div>
+              <div class="node server s5"><svg><use href="#i-server"/></svg>web-5</div>
+              <div class="node server s6"><svg><use href="#i-server"/></svg>web-6</div>
+            </div>
+            <span class="link l-db"></span>
+            <div class="db">
+              <div class="node n-db"><svg><use href="#i-db"/></svg>postgres</div>
+              <div class="node n-replica"><svg><use href="#i-db"/></svg>réplique</div>
+            </div>
+          </div>
+          <div class="monitoring"><svg><use href="#i-chart"/></svg>monitoring</div>
+        </div>
+
+        <figcaption>
+          <span class="fig-num">fig.&nbsp;1</span>
+          <span class="infra-caption">
+            <span class="c1">Un seul serveur. Ça suffit tant que personne ne vient.</span>
+            <span class="c2">La base de données passe sur sa propre machine.</span>
+            <span class="c3">Un répartiteur de charge envoie le trafic vers deux serveurs.</span>
+            <span class="c4">Plus d'utilisateurs&nbsp;: un troisième serveur.</span>
+            <span class="c5">Quatre serveurs et une réplique de la base en lecture.</span>
+            <span class="c6">Un CDN sert les fichiers statiques au plus près des utilisateurs.</span>
+            <span class="c7">On surveille l'ensemble&nbsp;: métriques, logs, alertes.</span>
+            <span class="c8">Auto-scaling&nbsp;: six serveurs. Le schéma ne va pas plus loin.</span>
+          </span>
+          <span class="infra-hint">Élargissez la fenêtre pour faire grandir l'infrastructure.</span>
+        </figcaption>
+      </figure>
+    </section>
+
+    <section id="about" class="row container">
+      <h2 class="row-label"><span>01</span>À propos</h2>
+      <div class="row-body prose">
+        <p>J'ai passé le bac à Berck, fait une prépa MP2I à Amiens, puis deux années de licence à Lille.
+          Cette année, je suis en L3 à Hanoï, à l'USTH, dans le cadre d'un double diplôme avec l'Université de Lille.</p>
+        <p>En cours de réseaux, j'ai compris que ce qui m'attire, c'est moins d'écrire une application que de la faire tourner&nbsp;:
+          la déployer, la surveiller, la faire tenir quand le trafic augmente. C'est pour ça que je vise un master orienté cloud et DevOps.</p>
+        <p>Ce site me sert de terrain d'entraînement. Il tourne dans un conteneur Docker, et chaque commit
+          le reconstruit, le teste et le publie automatiquement.</p>
+      </div>
+    </section>
+
+    <section id="parcours" class="row container">
+      <h2 class="row-label"><span>02</span>Parcours</h2>
+      <div class="row-body">
+        <ol class="route">
+          <li>
+            <span class="route-city">Berck</span>
+            <span class="route-years">2020–2023</span>
+            <span class="route-what">Baccalauréat général<br>Lycée Jan Lavezzari</span>
+          </li>
+          <li>
+            <span class="route-km">76&nbsp;km</span>
+            <span class="route-city">Amiens</span>
+            <span class="route-years">2023–2024</span>
+            <span class="route-what">CPGE MP2I<br>Lycée Louis Thuillier</span>
+          </li>
+          <li>
+            <span class="route-km">98&nbsp;km</span>
+            <span class="route-city">Lille</span>
+            <span class="route-years">2024–2026</span>
+            <span class="route-what">Licence 1 Informatique – Mathématiques, puis Licence 2 Informatique<br>Université de Lille</span>
+          </li>
+          <li class="route-now">
+            <span class="route-km">9&nbsp;071&nbsp;km</span>
+            <span class="route-city">Hanoï</span>
+            <span class="route-years">2026–</span>
+            <span class="route-what">Licence 3 Informatique, double diplôme<br>Université de Lille × USTH</span>
+          </li>
+        </ol>
+
+        <dl class="facts">
+          <dt>Langages</dt>
+          <dd>Java, SQL</dd>
+          <dt>Outils</dt>
+          <dd>Linux, Git</dd>
+          <dt>J'apprends</dt>
+          <dd>Docker, nginx, GitHub Actions (avec ce site)</dd>
+          <dt>Langues</dt>
+          <dd>russe (langue maternelle), français (C1), anglais (B2)</dd>
+        </dl>
+      </div>
+    </section>
+
+    <section id="projet" class="row container">
+      <h2 class="row-label"><span>03</span>Projet</h2>
+      <div class="row-body">
+        <h3 class="project-title">Ce site</h3>
+        <p class="prose">Une page statique écrite à la main, sans framework, servie par nginx dans un conteneur Docker.
+          À chaque <code>git push</code>, GitHub Actions construit l'image, la démarre et vérifie qu'elle répond correctement
+          avant de la publier.</p>
+
+        <ol class="pipeline" aria-label="Étapes du pipeline">
+          <li><b>push</b>commit sur main</li>
+          <li><b>build</b>image amd64 + arm64</li>
+          <li><b>test</b>pages, en-têtes, 404</li>
+          <li><b>publish</b>ghcr.io</li>
+          <li class="todo"><b>deploy</b>VPS Oracle Cloud, à venir</li>
+        </ol>
+
+        <p class="prose small">nginx tourne sans les droits root, dans un conteneur en lecture seule.
+          Chaque image est marquée par le hash de son commit, ce qui permet de revenir à n'importe quelle version.</p>
+        <p><a class="arrow-link" href="https://github.com/rogirouge/portfolio">Code source sur GitHub</a></p>
+      </div>
+    </section>
+
+    <section id="journal" class="row container">
+      <h2 class="row-label"><span>04</span>Journal</h2>
+      <div class="row-body">
+        <ul class="log">
+          <li class="log-todo"><time>bientôt</time>Mise en ligne sur un serveur Oracle Cloud, puis nom de domaine et HTTPS.</li>
+          <li><time datetime="2026-10-07">07.10.2026</time>Premier commit&nbsp;: le site, l'image Docker et le pipeline CI.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact" class="row container">
+      <h2 class="row-label"><span>05</span>Contact</h2>
+      <div class="row-body">
+        <p class="contact-mail"><a href="mailto:igor.belyaev1899@gmail.com">igor.belyaev1899@gmail.com</a></p>
+        <p><a class="arrow-link" href="https://github.com/rogirouge">github.com/rogirouge</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer container">
+    <p>&copy; <span id="year">2026</span> Igor Belyaev. Servi par nginx dans un conteneur Docker.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

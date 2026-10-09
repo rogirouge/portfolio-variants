@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Igor Belyaev</title>
+  <meta name="description" content="Igor Belyaev, étudiant en troisième année d'informatique (Université de Lille et USTH, Hanoï), en route vers le cloud et le DevOps.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders:opsz,wght@10..72,700..900&family=Archivo:wght@400..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/boot.js"></script>
+</head>
+<body>
+
+  <a class="skip" href="#apropos">Aller au contenu</a>
+
+  <header class="bar">
+    <a href="#top">Igor Belyaev</a>
+    <button class="menu-button" aria-expanded="false" aria-controls="menu">Menu</button>
+  </header>
+
+  <nav id="menu" class="menu" aria-label="Sections">
+    <ul>
+      <li><a href="#apropos">À propos</a></li>
+      <li><a href="#parcours">Parcours</a></li>
+      <li><a href="#competences">Compétences</a></li>
+      <li><a href="#photos">Photos</a></li>
+      <li><a href="#site">Ce site</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <p class="menu-foot">
+      <a href="mailto:igor.belyaev1899@gmail.com">igor.belyaev1899@gmail.com</a>
+      <a href="https://github.com/rogirouge">GitHub</a>
+    </p>
+  </nav>
+
+  <!-- filtre « liquide » : la photo du parcours se déforme en passant d'une ville à l'autre -->
+  <svg class="defs" aria-hidden="true">
+    <filter id="liquid">
+      <feTurbulence type="fractalNoise" baseFrequency="0.011 0.03" numOctaves="2" seed="6" result="noise"/>
+      <feDisplacementMap id="liquid-map" in="SourceGraphic" in2="noise" scale="0" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </svg>
+
+  <main id="top">
+
+    <!-- Couverture : une affiche. Une bande rouge traverse le nom ; là où elle passe, les lettres deviennent noires.
+         En faisant défiler, la bande s'élargit jusqu'à couvrir tout l'écran. -->
+    <section class="hero">
+      <div class="hero-stage">
+        <div class="poster">
+          <h1 class="name"><span>Igor</span><span>Belyaev</span></h1>
+          <p class="hero-sub">Étudiant en informatique<br>Cloud &amp; DevOps</p>
+          <p class="hero-meta">L3 · Université de Lille × USTH<br>Hanoï, 2026 – 2027</p>
+        </div>
+        <div class="band" aria-hidden="true"></div>
+        <div class="poster poster-k" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section id="apropos" class="section red">
+      <h2 class="side">À propos</h2>
+      <div class="content">
+        <p class="lead">Je m'intéresse à ce qui se passe une fois le code écrit&nbsp;: le déployer, le surveiller,
+          le faire tenir quand le trafic augmente.</p>
+        <div class="cols">
+          <div class="text">
+            <p>Je suis en troisième année de licence d'informatique, dans le cadre d'un double diplôme entre
+              l'Université de Lille et l'USTH, à Hanoï.</p>
+            <p>C'est en cours de réseaux que j'ai compris que l'infrastructure m'attirait plus que l'application elle-même.
+              Ce site me sert de terrain d'entraînement, et je vise un master orienté cloud et DevOps.</p>
+          </div>
+          <dl class="facts">
+            <div><dt>Actuellement</dt><dd>Licence 3 Informatique, USTH, Hanoï</dd></div>
+            <div><dt>Objectif</dt><dd>Master cloud &amp; DevOps, rentrée 2027</dd></div>
+            <div><dt>En dehors</dt><dd>La photo</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section id="parcours" class="section dark">
+      <h2 class="side">Parcours</h2>
+      <div class="content journey">
+        <ol class="steps">
+          <li class="step">
+            <p class="step-years">2020 — 2023</p>
+            <p class="step-city">Berck</p>
+            <p class="step-what">Baccalauréat général</p>
+            <p class="step-where">Lycée Jan Lavezzari</p>
+            <span class="photo step-photo"><img src="img/parcours/berck.jpg" alt="Cabines de plage à Berck" loading="lazy" width="900" height="1125"></span>
+          </li>
+          <li class="step">
+            <p class="step-years">2023 — 2024</p>
+            <p class="step-city">Amiens</p>
+            <p class="step-what">Classe préparatoire MP2I</p>
+            <p class="step-where">Lycée Louis Thuillier</p>
+            <span class="photo step-photo"><img src="img/parcours/amiens.jpg" alt="Barques dans les hortillonnages d'Amiens" loading="lazy" width="900" height="1125"></span>
+          </li>
+          <li class="step">
+            <p class="step-years">2024 — 2026</p>
+            <p class="step-city">Lille</p>
+            <p class="step-what">Licence 1 Informatique – Mathématiques, puis Licence 2 Informatique</p>
+            <p class="step-where">Université de Lille</p>
+            <span class="photo step-photo"><img src="img/parcours/lille.jpg" alt="Façade de la Vieille Bourse de Lille" loading="lazy" width="900" height="1125"></span>
+          </li>
+          <li class="step">
+            <p class="step-years">2026 — 2027 · en ce moment</p>
+            <p class="step-city">Hanoï</p>
+            <p class="step-what">Licence 3 Informatique, double diplôme</p>
+            <p class="step-where">Université de Lille × USTH</p>
+            <span class="photo step-photo"><img src="img/parcours/hanoi.jpg" alt="Ligne de métro aérienne à Hanoï, la nuit" loading="lazy" width="900" height="1125"></span>
+          </li>
+          <li class="step step-next">
+            <p class="step-years">2027 —</p>
+            <p class="step-city">Master</p>
+            <p class="step-what">La suite&nbsp;: un master orienté cloud et DevOps</p>
+            <p class="step-where">Candidatures en préparation</p>
+          </li>
+        </ol>
+        <div class="viewer" aria-hidden="true">
+          <div class="viewer-frame">
+            <span class="photo"><img src="img/parcours/berck.jpg" alt="" width="900" height="1125"></span>
+            <span class="photo"><img src="img/parcours/amiens.jpg" alt="" loading="lazy" width="900" height="1125"></span>
+            <span class="photo"><img src="img/parcours/lille.jpg" alt="" loading="lazy" width="900" height="1125"></span>
+            <span class="photo"><img src="img/parcours/hanoi.jpg" alt="" loading="lazy" width="900" height="1125"></span>
+            <span class="viewer-next">2027</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="competences" class="section red">
+      <h2 class="side">Compétences</h2>
+      <div class="content skills">
+        <div>
+          <h3 class="label">Je pratique</h3>
+          <ul class="words"><li>Java</li><li>SQL</li><li>Linux</li><li>Git</li></ul>
+        </div>
+        <div>
+          <h3 class="label">J'apprends</h3>
+          <ul class="words"><li>Docker</li><li>nginx</li><li>GitHub Actions</li></ul>
+        </div>
+        <div>
+          <h3 class="label">Langues</h3>
+          <ul class="words">
+            <li>Russe <small>langue maternelle</small></li>
+            <li>Français <small>C1</small></li>
+            <li>Anglais <small>B2</small></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="photos" class="section dark">
+      <h2 class="side">Photos</h2>
+      <div class="content">
+        <p class="intro">En dehors de l'écran, je fais de la photo. Ces images sont provisoires, les miennes arrivent.</p>
+        <div class="cf" tabindex="0" aria-roledescription="carrousel" aria-label="Photos">
+          <figure class="cf-item">
+            <span class="photo"><img src="img/hero-sm.jpg" alt="Ligne de métro aérienne à Hanoï, la nuit" loading="lazy"></span>
+            <figcaption><b>La ligne 2A, la nuit</b><span>Hanoï · NKSTTSSHNVN</span></figcaption>
+          </figure>
+          <figure class="cf-item">
+            <span class="photo"><img src="img/photos/p1.jpg" alt="Le lac Hoàn Kiếm illuminé" loading="lazy"></span>
+            <figcaption><b>Hoàn Kiếm</b><span>Hanoï · cloud.shepherd</span></figcaption>
+          </figure>
+          <figure class="cf-item">
+            <span class="photo"><img src="img/photos/p3.jpg" alt="Rue du vieux quartier de Hanoï, la nuit" loading="lazy"></span>
+            <figcaption><b>Vieux quartier</b><span>Hanoï · Adam Jones</span></figcaption>
+          </figure>
+          <figure class="cf-item">
+            <span class="photo"><img src="img/photos/p4.jpg" alt="Voie ferrée entre les maisons, Train Street" loading="lazy"></span>
+            <figcaption><b>Train Street, le jour</b><span>Hanoï · Radek Kucharski</span></figcaption>
+          </figure>
+          <figure class="cf-item">
+            <span class="photo"><img src="img/contact-sm.jpg" alt="Un train passe dans Train Street, le soir" loading="lazy"></span>
+            <figcaption><b>Train Street, le soir</b><span>Hanoï · Rod Waddington</span></figcaption>
+          </figure>
+          <figure class="cf-item">
+            <span class="photo"><img src="img/photos/p6.jpg" alt="Carrefour animé du vieux quartier" loading="lazy"></span>
+            <figcaption><b>Carrefour</b><span>Hanoï · David McKelvey</span></figcaption>
+          </figure>
+          <figure class="cf-item">
+            <span class="photo"><img src="img/photos/p2.jpg" alt="Hanoï vu d'en haut, la nuit" loading="lazy"></span>
+            <figcaption><b>Au bord du lac</b><span>Hanoï · cloud.shepherd</span></figcaption>
+          </figure>
+          <figure class="cf-item">
+            <span class="photo"><img src="img/photos/p7.jpg" alt="Lumières de Hanoï, la nuit" loading="lazy"></span>
+            <figcaption><b>Lumières</b><span>Hanoï · cloud.shepherd</span></figcaption>
+          </figure>
+        </div>
+        <div class="cf-bar">
+          <p class="cf-count label" aria-live="polite"><b>01</b> / 08</p>
+          <div class="cf-nav">
+            <button class="cf-prev" aria-label="Photo précédente">←</button>
+            <button class="cf-next" aria-label="Photo suivante">→</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="site" class="section red">
+      <h2 class="side">Ce site</h2>
+      <div class="content">
+        <p class="pipeline" aria-label="Étapes : push, build, test, publish"><span>Push</span><span>Build</span><span>Test</span><span>Publish</span></p>
+        <div class="cols">
+          <p class="lead">À chaque <code>git push</code>, ce site se reconstruit, se teste et se publie tout seul.</p>
+          <div class="text">
+            <p>Une page écrite à la main, sans framework. GitHub Actions construit une image Docker
+              (nginx sans les droits root, conteneur en lecture seule), vérifie que les pages, les en-têtes
+              et la page 404 répondent, publie l'image sur ghcr.io, puis met cette page en ligne sur GitHub Pages.</p>
+            <p>Chaque image porte le hash de son commit&nbsp;: on peut revenir à n'importe quelle version.</p>
+            <p class="version">Version affichée&nbsp;: <a href="https://github.com/rogirouge/portfolio/commits/main" data-version>copie locale</a></p>
+            <p><a class="link" href="https://github.com/rogirouge/portfolio">Voir le code sur GitHub</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section dark">
+      <h2 class="side">Contact</h2>
+      <div class="content">
+        <p class="lead">Une question sur mon parcours, un stage, un projet&nbsp;? Écrivez-moi.</p>
+        <p class="mail"><a href="mailto:igor.belyaev1899@gmail.com">igor.belyaev1899<wbr>@gmail.com</a></p>
+        <p class="contact-links">
+          <button class="copy" hidden>Copier l'adresse</button>
+          <a class="link" href="https://github.com/rogirouge">GitHub</a>
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Igor Belyaev. Écrit à la main, servi par nginx dans un conteneur Docker.</p>
+    <p class="credits">Photos provisoires, Wikimedia Commons&nbsp;:
+      JackyM59, Stefan Oemisch, NKSTTSSHNVN (<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.fr">CC BY-SA 4.0</a>, recadrées),
+      GFreihalter (<a href="https://creativecommons.org/licenses/by-sa/3.0/deed.fr">CC BY-SA 3.0</a>),
+      cloud.shepherd, Radek Kucharski, David McKelvey (<a href="https://creativecommons.org/licenses/by/2.0/deed.fr">CC BY 2.0</a>),
+      Adam Jones (<a href="https://creativecommons.org/licenses/by-sa/2.0/deed.fr">CC BY-SA 2.0</a>),
+      Rod Waddington (domaine public).</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

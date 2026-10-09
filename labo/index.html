@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Igor Belyaev</title>
+  <meta name="description" content="Igor Belyaev, étudiant en troisième année d'informatique (Université de Lille et USTH, Hanoï), en route vers le cloud et le DevOps.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..700;1,6..72,200..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/boot.js"></script>
+</head>
+<body>
+
+  <a class="skip" href="#apropos">Aller au contenu</a>
+
+  <header class="bar">
+    <a class="bar-name" href="#top">Igor Belyaev</a>
+    <nav class="bar-nav" aria-label="Sections">
+      <a href="#parcours">Parcours</a>
+      <a href="#photos">Photos</a>
+      <a href="#site">Ce site</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <!-- sous la lumière rouge, les photos restent en rouge ; en lumière blanche, on voit les couleurs -->
+    <button class="switch" aria-pressed="false" title="Changer la lumière de la chambre noire">
+      <span class="lamp" aria-hidden="true"></span><span class="switch-text">Lumière inactinique</span>
+    </button>
+  </header>
+
+  <main id="top">
+
+    <section class="hero">
+      <h1 class="name"><span>Igor</span> <em>Belyaev</em></h1>
+      <p class="tagline">Étudiant en informatique,<br><em>en cours de développement.</em></p>
+      <figure class="print hero-print">
+        <span class="photo"><img src="img/tirage.jpg" alt="Une rue de Hanoï le soir, sous un réverbère" width="1000" height="1250"></span>
+        <figcaption>Hanoï, Train Street, le soir</figcaption>
+      </figure>
+      <p class="hero-note">L3 d'informatique à Hanoï, en double diplôme avec l'Université de Lille.
+        Je me prépare à un master orienté cloud et DevOps.</p>
+    </section>
+
+    <section id="apropos" class="section">
+      <h2 class="title">À <em>propos</em></h2>
+      <div class="cols">
+        <p class="lead">Ce qui m'intéresse, c'est ce qui se passe une fois le code écrit&nbsp;: le déployer, le surveiller,
+          le faire tenir quand le trafic augmente.</p>
+        <div class="body">
+          <p>Je suis en troisième année de licence d'informatique, dans le cadre d'un double diplôme entre
+            l'Université de Lille et l'USTH, à Hanoï.</p>
+          <p>C'est en cours de réseaux que j'ai compris que l'infrastructure m'attirait plus que l'application elle-même.
+            Ce site me sert de terrain d'entraînement, et je vise un master orienté cloud et DevOps.</p>
+          <dl class="facts">
+            <div><dt>Actuellement</dt><dd>Licence 3 Informatique, USTH, Hanoï</dd></div>
+            <div><dt>Objectif</dt><dd>Master cloud &amp; DevOps, rentrée 2027</dd></div>
+            <div><dt>Langues</dt><dd>Russe, français (C1), anglais (B2)</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- Parcours : une bande de cinq vues, comme sur une planche contact -->
+    <section id="parcours" class="section">
+      <h2 class="title">Le <em>parcours</em></h2>
+      <p class="intro">Cinq vues, de Berck à Hanoï. La dernière n'est pas encore exposée.</p>
+      <div class="strip">
+        <ol class="strip-inner">
+          <li class="frame">
+            <span class="no">1</span>
+            <div class="print"><span class="photo"><img src="img/parcours/berck.jpg" alt="Cabines de plage à Berck" loading="lazy" width="900" height="1125"></span></div>
+            <p class="frame-city">Berck</p>
+            <p class="frame-years">2020 – 2023</p>
+            <p class="frame-what">Baccalauréat général, lycée Jan Lavezzari</p>
+          </li>
+          <li class="frame">
+            <span class="no">2</span>
+            <div class="print"><span class="photo"><img src="img/parcours/amiens.jpg" alt="Barques dans les hortillonnages d'Amiens" loading="lazy" width="900" height="1125"></span></div>
+            <p class="frame-city">Amiens</p>
+            <p class="frame-years">2023 – 2024</p>
+            <p class="frame-what">Classe préparatoire MP2I, lycée Louis Thuillier</p>
+          </li>
+          <li class="frame">
+            <span class="no">3</span>
+            <div class="print"><span class="photo"><img src="img/parcours/lille.jpg" alt="Façade de la Vieille Bourse de Lille" loading="lazy" width="900" height="1125"></span></div>
+            <p class="frame-city">Lille</p>
+            <p class="frame-years">2024 – 2026</p>
+            <p class="frame-what">Licence 1 Informatique – Mathématiques, puis Licence 2 Informatique, Université de Lille</p>
+          </li>
+          <li class="frame now">
+            <span class="no">4</span>
+            <div class="print"><span class="photo"><img src="img/parcours/hanoi.jpg" alt="Ligne de métro aérienne à Hanoï, la nuit" loading="lazy" width="900" height="1125"></span></div>
+            <p class="frame-city">Hanoï</p>
+            <p class="frame-years">2026 – 2027 · <em>en ce moment</em></p>
+            <p class="frame-what">Licence 3 Informatique, double diplôme Université de Lille × USTH</p>
+          </li>
+          <li class="frame next">
+            <span class="no">5</span>
+            <div class="print blank" aria-hidden="true"></div>
+            <p class="frame-city">Master</p>
+            <p class="frame-years">2027 –</p>
+            <p class="frame-what">La suite&nbsp;: un master orienté cloud et DevOps. <em>Vue pas encore exposée.</em></p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="photos" class="section">
+      <h2 class="title">Planche <em>contact</em></h2>
+      <p class="intro">Hors de l'écran, je fais de la photo. Ces vues sont provisoires, les miennes arrivent&nbsp;;
+        cliquez sur une vue pour l'agrandir.</p>
+      <div class="sheet">
+        <button class="shot" data-title="La ligne 2A, la nuit" data-credit="NKSTTSSHNVN, CC BY-SA 4.0"><span class="no">1</span><span class="print"><span class="photo"><img src="img/hero-sm.jpg" alt="Ligne de métro aérienne à Hanoï, la nuit" loading="lazy"></span></span></button>
+        <button class="shot" data-title="Hoàn Kiếm" data-credit="cloud.shepherd, CC BY 2.0"><span class="no">2</span><span class="print"><span class="photo"><img src="img/photos/p1.jpg" alt="Le lac Hoàn Kiếm illuminé" loading="lazy"></span></span></button>
+        <button class="shot" data-title="Vieux quartier" data-credit="Adam Jones, CC BY-SA 2.0"><span class="no">3</span><span class="print"><span class="photo"><img src="img/photos/p3.jpg" alt="Rue du vieux quartier de Hanoï, la nuit" loading="lazy"></span></span></button>
+        <button class="shot" data-title="Train Street, le jour" data-credit="Radek Kucharski, CC BY 2.0"><span class="no">4</span><span class="print"><span class="photo"><img src="img/photos/p4.jpg" alt="Voie ferrée entre les maisons, Train Street" loading="lazy"></span></span></button>
+        <button class="shot" data-title="Train Street, le soir" data-credit="Rod Waddington, domaine public"><span class="no">5</span><span class="print"><span class="photo"><img src="img/contact-sm.jpg" alt="Un train passe dans Train Street, le soir" loading="lazy"></span></span></button>
+        <button class="shot" data-title="Carrefour" data-credit="David McKelvey, CC BY 2.0"><span class="no">6</span><span class="print"><span class="photo"><img src="img/photos/p6.jpg" alt="Carrefour animé du vieux quartier" loading="lazy"></span></span></button>
+        <button class="shot" data-title="Au bord du lac" data-credit="cloud.shepherd, CC BY 2.0"><span class="no">7</span><span class="print"><span class="photo"><img src="img/photos/p2.jpg" alt="Hanoï vu d'en haut, la nuit" loading="lazy"></span></span></button>
+        <button class="shot" data-title="Lumières" data-credit="cloud.shepherd, CC BY 2.0"><span class="no">8</span><span class="print"><span class="photo"><img src="img/photos/p7.jpg" alt="Lumières de Hanoï, la nuit" loading="lazy"></span></span></button>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="title">Compétences</h2>
+      <div class="skills">
+        <div>
+          <h3 class="label">Je pratique</h3>
+          <ul><li>Java</li><li>SQL</li><li>Linux</li><li>Git</li></ul>
+        </div>
+        <div>
+          <h3 class="label">J'apprends</h3>
+          <ul><li>Docker</li><li>nginx</li><li>GitHub Actions</li></ul>
+        </div>
+        <div>
+          <h3 class="label">Langues</h3>
+          <ul><li>Russe <small>langue maternelle</small></li><li>Français <small>C1</small></li><li>Anglais <small>B2</small></li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="site" class="section">
+      <h2 class="title">Ce <em>site</em></h2>
+      <div class="cols">
+        <p class="lead">Un tirage passe par trois bains&nbsp;: révélateur, arrêt, fixateur.
+          Ce site aussi&nbsp;: <em>build, test, publication.</em></p>
+        <div class="body">
+          <p>Une page écrite à la main, sans framework. À chaque <code>git push</code>, GitHub Actions construit
+            une image Docker (nginx, sans les droits root, conteneur en lecture seule), vérifie que les pages,
+            les en-têtes et la page 404 répondent, publie l'image sur ghcr.io, puis met cette page en ligne
+            sur GitHub Pages.</p>
+          <p>Chaque image porte le hash de son commit&nbsp;: on peut revenir à n'importe quelle version.</p>
+          <p class="version">Version affichée&nbsp;: <a href="https://github.com/rogirouge/portfolio/commits/main" data-version>copie locale</a></p>
+          <p><a class="link" href="https://github.com/rogirouge/portfolio">Voir le code sur GitHub</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact">
+      <h2 class="title">Écrire</h2>
+      <p class="lead">Une question sur mon parcours, un stage, un projet&nbsp;? Écrivez-moi.</p>
+      <p class="mail"><a href="mailto:igor.belyaev1899@gmail.com">igor.belyaev1899<wbr>@gmail.com</a></p>
+      <p class="contact-links">
+        <button class="copy" hidden>Copier l'adresse</button>
+        <a class="link" href="https://github.com/rogirouge">GitHub</a>
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Igor Belyaev. Écrit à la main, servi par nginx dans un conteneur Docker.</p>
+    <p class="credits">Photos provisoires, Wikimedia Commons&nbsp;:
+      JackyM59, Stefan Oemisch (<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.fr">CC BY-SA 4.0</a>),
+      GFreihalter (<a href="https://creativecommons.org/licenses/by-sa/3.0/deed.fr">CC BY-SA 3.0</a>),
+      NKSTTSSHNVN (CC BY-SA 4.0, recadrée),
+      cloud.shepherd, Radek Kucharski, David McKelvey (<a href="https://creativecommons.org/licenses/by/2.0/deed.fr">CC BY 2.0</a>),
+      Adam Jones (<a href="https://creativecommons.org/licenses/by-sa/2.0/deed.fr">CC BY-SA 2.0</a>),
+      Rod Waddington (domaine public).</p>
+  </footer>
+
+  <!-- l'agrandisseur : la vue est mise au point, puis on allume la lumière -->
+  <dialog class="enlarger" aria-label="Agrandissement">
+    <figure>
+      <span class="photo"><img alt=""></span>
+      <figcaption><b></b> <span></span></figcaption>
+    </figure>
+    <div class="enlarger-nav">
+      <button class="en-prev" aria-label="Vue précédente">←</button>
+      <p class="en-count" aria-live="polite"></p>
+      <button class="en-next" aria-label="Vue suivante">→</button>
+      <button class="en-close">Fermer</button>
+    </div>
+  </dialog>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

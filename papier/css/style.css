@@ -1,0 +1,632 @@
+:root {
+  --paper: #f3efe6;
+  --paper-2: #e8e2d4;
+  --ink: #1b1a17;
+  --ink-2: #5d584e;
+  --rule: #d3cbb9;
+  --signal: #e2481c;
+
+  --sans: "IBM Plex Sans", Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", Menlo, Consolas, monospace;
+
+  --ease: cubic-bezier(.22, .61, .36, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--signal);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+a:hover { color: var(--signal); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
+
+::selection { background: var(--signal); color: var(--paper); }
+
+h1, h2, h3 { margin: 0; font-weight: 600; }
+
+code {
+  font-family: var(--mono);
+  font-size: .85em;
+  padding: 1px 5px;
+  background: var(--paper-2);
+}
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* ---------- En-tête ---------- */
+
+.site-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 22px 24px;
+  font-family: var(--mono);
+  font-size: 13px;
+}
+
+.logo { font-weight: 500; text-decoration: none; }
+
+.nav { display: flex; gap: 22px; }
+.nav a { color: var(--ink-2); text-decoration: none; }
+.nav a:hover { color: var(--ink); text-decoration: underline; text-decoration-color: var(--signal); }
+
+.menu-toggle {
+  display: none;
+  position: relative;
+  z-index: 30;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--signal);
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+/* ---------- Menu plein écran (mobile) ---------- */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  background: var(--paper);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s, visibility .3s;
+}
+
+.menu-open { overflow: hidden; }
+.menu-open .overlay { opacity: 1; visibility: visible; }
+
+.menu-list { list-style: none; margin: 0; padding: 0; }
+.menu-list li { margin: 6px 0; }
+
+.menu-list a {
+  position: relative;
+  font-size: clamp(34px, 10vw, 56px);
+  font-weight: 600;
+  letter-spacing: -.02em;
+  text-decoration: none;
+}
+
+/* le lien est barré au survol */
+.menu-list a::after {
+  content: "";
+  position: absolute;
+  left: -4px;
+  top: 55%;
+  width: 0;
+  height: 3px;
+  background: var(--signal);
+  transition: width .5s var(--ease);
+}
+.menu-list a:hover::after,
+.menu-list a:focus-visible::after { width: calc(100% + 8px); }
+
+/* ---------- Hero ---------- */
+
+.hero { padding-top: 48px; }
+
+.hero h1 {
+  font-size: clamp(52px, 11vw, 128px);
+  line-height: .95;
+  letter-spacing: -.04em;
+}
+
+.hero-lead {
+  max-width: 34em;
+  margin: 28px 0 0;
+  font-size: clamp(18px, 2vw, 22px);
+  line-height: 1.5;
+}
+
+/* ---------- Figure : le schéma grandit avec la fenêtre ---------- */
+
+.fig {
+  margin: 56px 0 0;
+  padding: 26px 20px 0;
+  text-align: center;
+  border: 1px solid var(--rule);
+  background-color: var(--paper);
+  background-image: radial-gradient(var(--rule) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+/* cote, comme sur un dessin technique */
+.dim {
+  position: relative;
+  height: 13px;
+  margin-bottom: 36px;
+  border-left: 1px solid var(--ink-2);
+  border-right: 1px solid var(--ink-2);
+  line-height: 13px;
+}
+.dim::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 6px;
+  border-top: 1px solid var(--ink-2);
+}
+.dim-value {
+  position: relative;
+  padding: 0 10px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-2);
+  background: var(--paper);
+}
+.dim-value b { font-weight: 500; color: var(--ink); }
+
+.icons { display: none; }
+
+.infra {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.infra-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.node {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 34px;
+  padding: 0 12px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  white-space: nowrap;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1.5px solid var(--ink);
+  animation: pop-in .45s var(--ease) both;
+}
+
+.node svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* liaison avec des paquets qui circulent */
+.link {
+  flex: none;
+  width: 36px;
+  height: 2px;
+  background: repeating-linear-gradient(90deg, var(--signal) 0 6px, transparent 6px 12px);
+  background-size: 12px 2px;
+  animation: grow .45s var(--ease) both, traffic .6s linear infinite;
+}
+
+/* groupes de serveurs et de bases : une accolade relie les nœuds */
+.pool, .db {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pool::before, .pool::after, .db::before {
+  content: "";
+  position: absolute;
+  top: 17px;
+  bottom: 17px;
+  width: 1.5px;
+  background: var(--ink);
+}
+.pool::before, .db::before { left: 0; }
+.pool::after { right: 0; }
+
+.server::before, .server::after, .db .node::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 18px;
+  height: 1.5px;
+  background: var(--ink);
+}
+.server::before, .db .node::before { left: -19.5px; }
+.server::after { right: -19.5px; }
+
+.pool-label {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  margin-bottom: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--signal);
+}
+
+.monitoring {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 22px;
+  padding-top: 10px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-2);
+  border-top: 1.5px dashed var(--ink-2);
+  animation: pop-in .45s var(--ease) both;
+}
+.monitoring svg { width: 16px; height: 16px; fill: none; stroke: var(--signal); stroke-width: 2; }
+
+.fig figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 14px;
+  margin: 32px -20px 0;
+  padding: 12px 20px 14px;
+  text-align: left;
+  font-size: 15px;
+  background: var(--paper);
+  border-top: 1px solid var(--rule);
+}
+
+.fig-num { font-family: var(--mono); font-size: 12px; color: var(--signal); }
+
+.infra-hint {
+  display: none;
+  margin-left: auto;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-2);
+}
+
+@keyframes pop-in { from { opacity: 0; transform: scale(.7); } }
+@keyframes grow { from { transform: scaleX(0); } }
+@keyframes traffic { to { background-position: 12px 0; } }
+
+/* Étape 1 (par défaut) : un seul serveur */
+.n-users, .n-cdn, .n-lb, .link, .db, .n-replica, .monitoring,
+.s2, .s3, .s4, .s5, .s6, .pool-label,
+.infra-caption span,
+.pool::before, .pool::after, .db::before,
+.server::before, .server::after, .db .node::before { display: none; }
+
+.infra-caption .c1 { display: inline; }
+
+/* Étape 2 : + base de données */
+@media (min-width: 560px) {
+  .db, .l-db, .pool::after, .server::after { display: flex; }
+  .pool { padding-right: 18px; }
+  .infra-caption .c1 { display: none; }
+  .infra-caption .c2 { display: inline; }
+}
+
+/* Étape 3 : + load balancer, 2 serveurs */
+@media (min-width: 720px) {
+  .n-lb, .l-lb, .s2, .pool::before, .server::before { display: flex; }
+  .pool { padding-left: 18px; }
+  .infra-caption .c2 { display: none; }
+  .infra-caption .c3 { display: inline; }
+  .infra-hint { display: inline; }
+}
+
+/* Étape 4 : + utilisateurs, 3 serveurs */
+@media (min-width: 880px) {
+  .n-users, .l-users, .s3 { display: flex; }
+  .infra-caption .c3 { display: none; }
+  .infra-caption .c4 { display: inline; }
+}
+
+/* Étape 5 : 4 serveurs + réplique */
+@media (min-width: 1040px) {
+  .s4, .n-replica, .db::before, .db .node::before { display: flex; }
+  .db { padding-left: 18px; }
+  .infra-caption .c4 { display: none; }
+  .infra-caption .c5 { display: inline; }
+}
+
+/* Étape 6 : + CDN */
+@media (min-width: 1200px) {
+  .n-cdn, .l-cdn { display: flex; }
+  .infra-caption .c5 { display: none; }
+  .infra-caption .c6 { display: inline; }
+}
+
+/* Étape 7 : + monitoring */
+@media (min-width: 1360px) {
+  .monitoring { display: flex; }
+  .infra-caption .c6 { display: none; }
+  .infra-caption .c7 { display: inline; }
+}
+
+/* Étape 8 : auto-scaling, 6 serveurs */
+@media (min-width: 1520px) {
+  .s5, .s6 { display: flex; }
+  .pool-label { display: block; }
+  .infra-caption .c7 { display: none; }
+  .infra-caption .c8 { display: inline; }
+}
+
+/* l'indice n'a de sens que si l'on peut redimensionner la fenêtre */
+@media (hover: none) {
+  .infra-hint { display: none !important; }
+}
+
+/* ---------- Sections ---------- */
+
+.row {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 32px;
+  padding-top: 56px;
+  padding-bottom: 64px;
+  background: linear-gradient(var(--rule), var(--rule)) top / calc(100% - 48px) 1px no-repeat;
+}
+#about { margin-top: 96px; }
+
+.row-label {
+  align-self: start;
+  position: sticky;
+  top: 24px;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 500;
+}
+.row-label span { margin-right: 10px; color: var(--signal); }
+
+.prose { max-width: 38em; }
+.prose p { margin: 0 0 1em; }
+.prose p:last-child { margin-bottom: 0; }
+.small { font-size: 16px; color: var(--ink-2); }
+
+/* ---------- Parcours : trajet Berck → Hanoï ---------- */
+
+.route {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 30px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.route li {
+  position: relative;
+  padding: 20px 18px 0 0;
+  border-top: 2px solid var(--ink);
+}
+
+/* le segment Lille → Hanoï est en pointillés ; la ligne s'arrête à Hanoï */
+.route li:nth-child(3) { border-top: 2px dashed var(--signal); }
+.route li:last-child { border-top-color: transparent; }
+
+.route li::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--ink);
+}
+
+.route-now::before {
+  background: var(--signal) !important;
+  box-shadow: 0 0 0 4px var(--paper), 0 0 0 5.5px var(--signal);
+}
+
+/* distance depuis l'étape précédente, au milieu du segment */
+.route-km {
+  position: absolute;
+  top: -28px;
+  left: -50%;
+  transform: translateX(-50%);
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+.route-now .route-km { color: var(--signal); }
+
+.route-city { display: block; font-size: 22px; font-weight: 600; line-height: 1.2; }
+.route-years { display: block; font-family: var(--mono); font-size: 13px; color: var(--ink-2); }
+.route-what { display: block; margin-top: 8px; font-size: 15px; line-height: 1.45; color: var(--ink-2); }
+
+.facts {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 10px 20px;
+  margin: 56px 0 0;
+  padding-top: 24px;
+  border-top: 1px dashed var(--rule);
+}
+.facts dt { font-family: var(--mono); font-size: 13px; color: var(--ink-2); padding-top: 3px; }
+.facts dd { margin: 0; }
+
+/* ---------- Projet ---------- */
+
+.project-title { font-size: 30px; letter-spacing: -.02em; margin-bottom: 14px; }
+
+.pipeline {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 26px;
+  max-width: 860px;
+  margin: 32px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pipeline li {
+  position: relative;
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--ink-2);
+  border: 1.5px solid var(--ink);
+  background: var(--paper);
+}
+
+.pipeline b {
+  display: block;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* flèche entre deux étapes */
+.pipeline li + li::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -27.5px;
+  width: 24px;
+  border-top: 1.5px solid var(--ink);
+}
+.pipeline li + li::after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 3.5px);
+  left: -10px;
+  width: 6px;
+  height: 6px;
+  border-top: 1.5px solid var(--ink);
+  border-right: 1.5px solid var(--ink);
+  transform: rotate(45deg);
+}
+
+.pipeline .todo { border-style: dashed; border-color: var(--ink-2); }
+.pipeline .todo::before { border-top-style: dashed; }
+.pipeline .todo b { color: var(--ink-2); }
+
+.arrow-link { font-family: var(--mono); font-size: 14px; }
+.arrow-link::after { content: " →"; }
+
+/* ---------- Journal ---------- */
+
+.log { margin: 0; padding: 0; list-style: none; max-width: 40em; }
+
+.log li {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px dashed var(--rule);
+}
+.log li:first-child { padding-top: 0; }
+
+.log time { font-family: var(--mono); font-size: 13px; color: var(--ink-2); padding-top: 3px; }
+.log-todo { color: var(--ink-2); font-style: italic; }
+.log-todo time { color: var(--signal); font-style: normal; }
+
+/* ---------- Contact & pied de page ---------- */
+
+.contact-mail {
+  margin: 0 0 18px;
+  font-size: clamp(22px, 3.6vw, 38px);
+  font-weight: 600;
+  letter-spacing: -.02em;
+  overflow-wrap: anywhere;
+}
+.contact-mail a { text-decoration-thickness: 2px; text-underline-offset: 6px; }
+
+.site-footer {
+  padding-top: 24px;
+  padding-bottom: 48px;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink-2);
+  background: linear-gradient(var(--rule), var(--rule)) top / calc(100% - 48px) 1px no-repeat;
+}
+.site-footer p { margin: 0; }
+
+/* ---------- Écrans étroits ---------- */
+
+@media (max-width: 879px) {
+  .row { grid-template-columns: 1fr; gap: 20px; }
+  .row-label { position: static; }
+}
+
+@media (max-width: 719px) {
+  body { font-size: 17px; }
+  .container, .site-header { padding-left: 16px; padding-right: 16px; }
+  .row, .site-footer { background-size: calc(100% - 32px) 1px; }
+  .overlay { padding: 0 16px; }
+
+  .nav { display: none; }
+  .menu-toggle { display: block; }
+
+  .hero { padding-top: 32px; }
+  .fig { margin-top: 40px; padding: 22px 12px 0; }
+  .fig figcaption { margin: 28px -12px 0; padding: 12px; }
+  #about { margin-top: 64px; }
+  .row { padding-top: 40px; padding-bottom: 48px; }
+
+  /* le trajet devient vertical */
+  .route { grid-template-columns: 1fr; margin-top: 8px; }
+  .route li {
+    padding: 0 0 28px 26px;
+    border-top: 0;
+    border-left: 2px solid var(--ink);
+  }
+  .route li:nth-child(3) { border-top: 0; border-left: 2px dashed var(--signal); }
+  .route li:last-child { border-left-color: transparent; padding-bottom: 0; }
+  .route li::before { top: 6px; left: -7px; }
+  .route-km { position: static; transform: none; display: block; margin-bottom: 2px; }
+  .route li:first-child .route-km { display: none; }
+
+  .facts { grid-template-columns: 1fr; gap: 2px; }
+  .facts dd { margin-bottom: 12px; }
+
+  /* le pipeline devient vertical */
+  .pipeline { grid-template-columns: max-content; }
+  .pipeline li + li::before { top: -27.5px; left: 22px; width: 0; height: 22px; border-top: 0; border-left: 1.5px solid var(--ink); }
+  .pipeline li + li::after { top: -11px; left: 19.5px; transform: rotate(135deg); }
+  .pipeline .todo::before { border-left-style: dashed; }
+
+  .log li { grid-template-columns: 1fr; gap: 2px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
