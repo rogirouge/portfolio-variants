@@ -13,7 +13,7 @@
   --gutter: clamp(16px, 2.4vw, 32px);
 
   /* part de l'écran entre le bord et la fenêtre (recalculée par main.js) */
-  --m: .353;
+  --m: .386;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -47,13 +47,13 @@ code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .88em; 
 }
 
 /* les couleurs d'une salle : fond, texte, lignes, accent */
-.room.dark { --rb: var(--black); --rf: var(--white); --rl: rgba(236, 236, 236, .3); --ra: var(--red); --rm: var(--grey); }
-.room.red  { --rb: var(--red); --rf: var(--black); --rl: rgba(11, 11, 11, .42); --ra: var(--white); --rm: rgba(11, 11, 11, .72); }
+.room.dark { --rb: var(--black); --rf: var(--white); --rl: rgba(236, 236, 236, .3); --ra: var(--red); --rm: #bdbdbd; }
+.room.red  { --rb: var(--red); --rf: var(--black); --rl: rgba(11, 11, 11, .42); --ra: var(--white); --rm: rgba(11, 11, 11, .8); }
 .room.red ::selection { background: var(--black); color: var(--red); }
 
 /* petits libellés en capitales */
 .label, .bar, .hint, .corner, .route, .cf-count, .cf-nav button, .copy, .link, .menu-foot {
-  font-size: .74em;
+  font-size: .8em;
   font-weight: 600;
   line-height: 1.4;
   letter-spacing: .09em;
@@ -366,6 +366,16 @@ html:not(.corridor) .pipeline, html:not(.corridor) .mail { font-size: clamp(30px
   pointer-events: none;
 }
 .corridor .room.shown { opacity: 1; }
+/* l'ombre du fond du couloir, posée sur toute la salle (main.js règle --fog selon la distance) */
+.corridor .room::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: var(--black);
+  opacity: var(--fog, 0);
+  pointer-events: none;
+}
 .corridor .room.here { pointer-events: auto; }
 .corridor.moving .room.shown { will-change: transform; }
 

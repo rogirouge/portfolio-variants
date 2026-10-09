@@ -92,7 +92,7 @@
   // La salle k est agrandie de Z^(z-k) depuis le centre : à z = k elle remplit l'écran,
   // à z = k-1 elle tient exactement dans la fenêtre de la salle d'avant.
 
-  var Z = 3.4;     // l'écran est Z fois plus grand que la fenêtre
+  var Z = 4.4;     // l'écran est Z fois plus grand que la fenêtre
   var H = 1;       // hauteur d'écran = longueur de défilement d'une salle
   var W = 0;
   var z = 0;
@@ -186,7 +186,7 @@
     return true;
   }
 
-  function fitBand(band, base) {
+  function fitBand(band, base, minText) {
     var cs = getComputedStyle(band);
     var innerW = band.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
     var innerH = band.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
@@ -195,7 +195,7 @@
     band.style.fontSize = size + 'px';
 
     // un grand titre prend toute la hauteur permise, puis on élargit ou resserre ses lettres pour la largeur
-    var cap = innerH * (band.classList.contains('side') ? 0.9 : 0.52);
+    var cap = innerH * (band.classList.contains('side') ? 0.9 : 0.5);
     giants.forEach(function (g) {
       g.style.fontSize = '100px';
       g.style.fontStretch = '62%';
@@ -218,11 +218,14 @@
     setGiants();
 
     // trop haut ou trop large : on réduit d'abord le petit texte, puis les grands titres
-    for (var i = 0; i < 60 && !fits(band); i++) {
-      if (size > 11 || !giants.length) {
-        size *= 0.94;
+    // trop haut ou trop large : on réduit le petit texte tant qu'il reste lisible, puis les grands titres,
+    // et seulement en dernier recours le texte encore un peu
+    var minCap = innerH * 0.18;
+    for (var i = 0; i < 80 && !fits(band); i++) {
+      if (size > minText || !giants.length || cap <= minCap) {
+        size *= 0.95;
         band.style.fontSize = size.toFixed(2) + 'px';
-        if (size < 7) break;
+        if (size < 8) break;
       } else {
         cap *= 0.93;
         setGiants();
@@ -261,10 +264,12 @@
       var s = Math.pow(Z, z - k);
       r.style.transform = 'scale(' + s.toFixed(5) + ')';
       r.style.zIndex = String(k - k0 + 1);
+      // plus une salle est loin, plus elle est dans l'ombre : la salle où l'on est reste la plus visible
+      r.style.setProperty('--fog', clamp((k - z) * 0.78, 0, 0.92).toFixed(3));
       next.push(r);
     }
     shown.forEach(function (r) {
-      if (next.indexOf(r) < 0) { r.classList.remove('shown'); r.style.transform = ''; }
+      if (next.indexOf(r) < 0) { r.classList.remove('shown'); r.style.transform = ''; r.style.removeProperty('--fog'); }
     });
     next.forEach(function (r) { r.classList.add('shown'); });
     shown = next;
@@ -339,14 +344,15 @@
     var wasZ = H > 1 ? window.scrollY / oldH : -1;
     W = root.clientWidth;
     H = window.innerHeight;
-    Z = W <= 700 ? 4.2 : 3.4;
+    Z = W <= 700 ? 4.8 : 4.4;
     root.style.setProperty('--m', ((1 - 1 / Z) / 2).toFixed(4));
     snaps.forEach(function (s) { s.style.height = H + 'px'; });
     drawLines();
     fitCarousel();
-    var base = clamp(W / 85, 13, 19);
+    var base = clamp(W / 68, 15, 22);
+    var minText = W <= 700 ? 13 : 15;
     rooms.forEach(function (r) {
-      r.querySelectorAll('.band').forEach(function (b) { fitBand(b, base); });
+      r.querySelectorAll('.band').forEach(function (b) { fitBand(b, base, minText); });
     });
     if (wasZ >= 0 && oldH !== H) window.scrollTo({ top: wasZ * H, behavior: 'instant' });
     render();
