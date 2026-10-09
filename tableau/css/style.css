@@ -1,0 +1,518 @@
+/* Tableau des départs : le site est un panneau à palettes, comme dans une gare ou un aéroport.
+   Les mots courts sont faits de palettes (.flap, découpées en cases par main.js) ;
+   le texte long reste du texte normal, en grand, pour être lu. */
+
+:root {
+  --black: #0b0b0b;
+  --panel: #121212;
+  --edge: #242424;
+  --red: #ef3326;
+  --white: #f0ede6;
+  --text: #d9d6cf;
+  --grey: #9a9893;
+
+  --font: Archivo, "Helvetica Neue", Arial, sans-serif;
+  --ease: cubic-bezier(.22, .61, .36, 1);
+  --gutter: clamp(16px, 3vw, 44px);
+  --max: 1360px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 19px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--black);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+h1, h2, h3, p, figure, ul { margin: 0; }
+ul { padding: 0; list-style: none; }
+a { color: var(--white); }
+button { font: inherit; color: inherit; }
+a:focus-visible, button:focus-visible, .cf:focus-visible { outline: 2px solid var(--red); outline-offset: 4px; }
+code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .86em; }
+::selection { background: var(--red); color: var(--black); }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* petits libellés en capitales */
+.label, .bar, .strip, .board-head, .hero-role, .cf-count, .cf-nav button, .copy, .link, .footer, .stop .label {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.skip {
+  position: absolute;
+  top: -100px;
+  left: var(--gutter);
+  z-index: 100;
+  padding: 8px 14px;
+  background: var(--red);
+  color: var(--black);
+}
+.skip:focus { top: 12px; }
+
+/* ============================================================
+   Les palettes
+   ============================================================ */
+
+/* sans JavaScript : le mot en capitales, sur fond de panneau */
+.flap {
+  --c: 22px;   /* largeur d'une case */
+  font-weight: 700;
+  letter-spacing: .12em;
+  white-space: nowrap;
+}
+
+.flap.built {
+  display: inline-flex;
+  gap: calc(var(--c) * .1);
+  vertical-align: middle;
+  letter-spacing: 0;
+}
+
+.cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: var(--c);
+  height: calc(var(--c) * 1.36);
+  overflow: hidden;
+  border-radius: calc(var(--c) * .09);
+  /* deux demi-palettes, séparées par la fente de l'axe */
+  background: linear-gradient(#262626, #1c1c1c 49%, #050505 49%, #050505 51.5%, #1b1b1b 51.5%, #141414);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .07), 0 1px 2px rgba(0, 0, 0, .7);
+  color: var(--white);
+  font-size: calc(var(--c) * .9);
+  font-weight: 700;
+  font-stretch: 84%;
+  line-height: 1;
+}
+.red .cell, .cell.red {
+  background: linear-gradient(#f4473a, #e8392c 49%, #6d130c 49%, #6d130c 51.5%, #e3362a 51.5%, #d42e22);
+  color: var(--black);
+}
+.ch { display: block; transform-origin: 50% 50%; }
+
+/* une palette qui tombe : la lettre arrive écrasée d'en haut, la demi-palette du haut s'éclaire un instant */
+.cell::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 50% 0;
+  background: rgba(255, 255, 255, .14);
+  opacity: 0;
+  pointer-events: none;
+}
+.cell.ta .ch { animation: drop-a 90ms linear; }
+.cell.tb .ch { animation: drop-b 90ms linear; }
+.cell.ta::before { animation: shine-a 90ms linear; }
+.cell.tb::before { animation: shine-b 90ms linear; }
+@keyframes drop-a { from { transform: translateY(-22%) scaleY(.4); } }
+@keyframes drop-b { from { transform: translateY(-22%) scaleY(.4); } }
+@keyframes shine-a { from { opacity: 1; } }
+@keyframes shine-b { from { opacity: 1; } }
+
+/* ============================================================
+   Barre du haut et menu
+   ============================================================ */
+
+.bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+  padding: 12px var(--gutter);
+  background: rgba(11, 11, 11, .92);
+  border-bottom: 1px solid var(--edge);
+  color: var(--white);
+}
+.bar a { text-decoration: none; }
+.bar-clocks { display: flex; gap: 22px; color: var(--grey); }
+.bar-clocks span { display: inline-flex; align-items: center; gap: 8px; }
+.bar-clocks .flap { --c: 15px; color: var(--white); }
+.menu-button {
+  justify-self: end;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+}
+.menu-button:hover { color: var(--red); }
+
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  display: flex;
+  align-items: center;
+  padding: 80px var(--gutter) 40px;
+  background: var(--black);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .3s, visibility .3s;
+}
+.menu-open { overflow: hidden; }
+.menu-open .menu { opacity: 1; visibility: visible; }
+.menu ul { display: grid; gap: min(1.6vh, 14px); }
+.menu a { display: inline-block; text-decoration: none; }
+.menu .flap { --c: min(8vh, 6.6vw); }
+.menu a:hover .cell, .menu a:focus-visible .cell {
+  background: linear-gradient(#f4473a, #e8392c 49%, #6d130c 49%, #6d130c 51.5%, #e3362a 51.5%, #d42e22);
+  color: var(--black);
+}
+
+/* ============================================================
+   Accueil : le grand panneau
+   ============================================================ */
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(20px, 3.2vh, 40px);
+  min-height: 100svh;
+  padding: 84px var(--gutter) 36px;
+}
+
+/* bandeau rouge, en trois langues */
+.strip {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: var(--red);
+  color: var(--black);
+  font-size: clamp(13px, 1.2vw, 17px);
+  font-weight: 800;
+}
+
+.hero-name {
+  display: grid;
+  gap: calc(var(--c) * .14);
+  font-size: inherit;
+  /* « BELYAEV » remplit la largeur, deux lignes doivent tenir en hauteur */
+  --c: min(calc((100vw - 2 * var(--gutter)) / 7.65), calc((100svh - 360px) / 2.9));
+}
+.hero-name .flap { --c: inherit; font-size: clamp(56px, 12vw, 200px); line-height: 1; }
+.hero-name .flap.built { font-size: inherit; }
+
+.hero-foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: end;
+  gap: 20px 40px;
+}
+.hero-next { display: grid; gap: 8px; }
+.hero-next .label { color: var(--grey); }
+.hero-next .flap { --c: clamp(13px, 1.75vw, 28px); }
+.hero-role { text-align: right; color: var(--grey); }
+.arrow-down { display: inline-block; margin-top: 6px; color: var(--white); text-decoration: none; border-bottom: 2px solid var(--red); }
+.arrow-down::after { content: " ↓"; }
+
+/* ============================================================
+   Sections
+   ============================================================ */
+
+.section {
+  max-width: calc(var(--max) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: clamp(80px, 12vh, 140px) var(--gutter);
+  border-top: 1px solid var(--edge);
+}
+.title { margin-bottom: clamp(32px, 5vh, 56px); line-height: 1; }
+.title .flap { --c: clamp(26px, 4.2vw, 62px); font-size: clamp(30px, 5vw, 70px); }
+
+.cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 80px);
+}
+.lead {
+  color: var(--white);
+  font-size: clamp(25px, 2.5vw, 36px);
+  font-weight: 600;
+  line-height: 1.22;
+  letter-spacing: -.01em;
+}
+.text p + p { margin-top: 1em; }
+.intro { max-width: 52ch; margin-bottom: 36px; font-size: 21px; }
+
+.link { text-decoration: none; border-bottom: 2px solid var(--red); padding-bottom: 2px; }
+.link::after { content: " →"; }
+
+/* ---------- Les panneaux ---------- */
+
+.board {
+  container-type: inline-size;
+  padding: clamp(10px, 1.6vw, 22px);
+  background: var(--panel);
+  border: 1px solid var(--edge);
+  border-radius: 8px;
+  box-shadow: inset 0 0 0 4px #0e0e0e;
+}
+/* --n : nombre de cases sur une ligne (espaces compris) ; une case prend toute la largeur disponible */
+.board .flap { --c: min(var(--max-c, 40px), calc(100cqi / (var(--n) * 1.1))); font-size: 18px; }
+.board-head {
+  display: flex;
+  gap: 0;
+  padding: 0 0 10px;
+  color: var(--grey);
+  font-size: 11px;
+}
+.row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 7px 0;
+  border-top: 1px solid #1d1d1d;
+}
+.row > .flap + .flap { margin-left: calc(var(--c) * 1.1); }
+.row > .flap { --c: inherit; }
+.board .row { --c: min(var(--max-c, 40px), calc(100cqi / (var(--n) * 1.1))); }
+
+/* ---------- Parcours : l'horaire des départs ---------- */
+
+.timetable { --n: 35; }
+.timetable .row {
+  width: 100%;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background .2s;
+}
+.timetable .row:hover, .timetable .row.on { background: #191919; }
+.timetable .row.on { box-shadow: inset 4px 0 0 var(--red); }
+.timetable .board-head span { flex: none; }
+.timetable .board-head span + span { margin-left: calc(var(--c) * 1.1); }
+.timetable .board-head { --c: min(40px, calc(100cqi / (35 * 1.1))); }
+.c-year { width: calc(var(--c) * 4.3); }
+.c-city { width: calc(var(--c) * 7.6); }
+.c-form { width: calc(var(--c) * 15.3); }
+.c-state { width: calc(var(--c) * 7.6); }
+.timetable .flap.built { width: auto; }
+
+/* « en vol » : un voyant rouge qui clignote */
+.row.now .c-state::after {
+  content: "";
+  width: calc(var(--c) * .36);
+  height: calc(var(--c) * .36);
+  margin: auto 0 auto calc(var(--c) * .4);
+  border-radius: 50%;
+  background: var(--red);
+  animation: blink 1.4s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: .15; } }
+
+.stops { margin-top: 28px; }
+.stop {
+  display: grid;
+  grid-template-columns: minmax(160px, 260px) minmax(0, 1fr);
+  align-items: end;
+  gap: clamp(20px, 3vw, 48px);
+  padding: 20px 0;
+}
+.js .stop { display: none; }
+.js .stop.on { display: grid; animation: appear .5s var(--ease); }
+@keyframes appear { from { opacity: 0; transform: translateY(10px); } }
+.stop h3 { margin: 10px 0 6px; max-width: 26ch; color: var(--white); font-size: clamp(24px, 2.4vw, 34px); font-weight: 600; line-height: 1.2; }
+.stop .label { color: var(--red); }
+.stop p:last-child { color: var(--grey); }
+
+/* ---------- Photos en rouge et noir : un noir et blanc multiplié par le rouge ---------- */
+
+.photo { position: relative; display: block; overflow: hidden; isolation: isolate; background: var(--black); }
+.photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  filter: grayscale(1) brightness(1.15) contrast(1.1);
+  transition: filter .8s var(--ease);
+}
+.photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--red);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  transition: opacity .8s var(--ease);
+}
+.photo.color img, .stop.on .photo img { filter: none; }
+.photo.color::after, .stop.on .photo::after { opacity: 0; }
+.photo.blank {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4 / 5;
+  border: 2px dashed var(--red);
+  background: none;
+  color: var(--red);
+  font-size: 44px;
+  font-weight: 800;
+}
+.photo.blank::after { content: none; }
+
+/* ---------- Compétences ---------- */
+
+.skills {
+  display: grid;
+  grid-template-columns: minmax(0, 23fr) minmax(0, 16fr);
+  align-items: start;
+  gap: clamp(16px, 2.4vw, 36px);
+}
+.skills .board:first-child { --n: 23; }
+.skills .board:last-child { --n: 16; }
+.skills .board-head span:last-child { margin-left: auto; }
+
+/* ---------- Photos : carrousel en éventail ---------- */
+
+.cf {
+  --pw: clamp(220px, 24vw, 340px);
+  position: relative;
+  height: calc(var(--pw) * 4 / 3 + 10px);
+  overflow-x: clip;
+  perspective: 1600px;
+  outline: none;
+  touch-action: pan-y;
+  user-select: none;
+}
+.cf-item {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: var(--pw);
+  margin-left: calc(var(--pw) / -2);
+  transition: transform .8s var(--ease), opacity .8s var(--ease);
+  cursor: pointer;
+}
+.cf-item .photo img { aspect-ratio: 3 / 4; pointer-events: none; }
+.cf-item figcaption { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+.cf-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-top: 26px;
+  padding-top: 18px;
+  border-top: 1px solid var(--edge);
+}
+.cf-place .flap { --c: clamp(16px, 2vw, 26px); }
+.cf-nav { display: flex; align-items: center; gap: 12px; }
+.cf-count { min-width: 7ch; text-align: center; }
+.cf-count b { color: var(--red); }
+.cf-nav button, .copy {
+  padding: 10px 16px;
+  border: 1px solid var(--edge);
+  border-radius: 4px;
+  background: var(--panel);
+  color: var(--white);
+  cursor: pointer;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.cf-nav button:hover, .copy:hover { background: var(--red); border-color: var(--red); color: var(--black); }
+
+/* sans JavaScript : une simple bande de photos qu'on fait défiler, avec les légendes */
+html:not(.js) .cf { display: flex; gap: 16px; height: auto; overflow-x: auto; }
+html:not(.js) .cf-item { position: static; flex: 0 0 var(--pw); margin: 0; }
+html:not(.js) .cf-item figcaption { position: static; width: auto; height: auto; margin-top: 10px; clip-path: none; white-space: normal; font-size: 14px; }
+html:not(.js) .cf-bar { display: none; }
+
+/* ---------- Ce site ---------- */
+
+#site .board { max-width: 520px; margin-bottom: clamp(36px, 5vh, 56px); --n: 11; --max-c: 42px; }
+#site .row > .flap + .flap { margin-left: auto; }
+
+/* ---------- Contact ---------- */
+
+.mail { margin-bottom: 30px; line-height: 1; }
+.mail a { display: inline-flex; flex-wrap: wrap; gap: calc(var(--c) * .14) 0; text-decoration: none; --c: min(50px, calc((100vw - 2 * var(--gutter)) / 28.8)); }
+.mail .flap { --c: inherit; font-size: clamp(22px, 3.4vw, 46px); }
+.mail .flap.built { font-size: inherit; }
+.mail a:hover .cell { color: var(--red); }
+.contact-links { display: flex; flex-wrap: wrap; align-items: center; gap: 26px; }
+
+/* ---------- Pied de page ---------- */
+
+.footer {
+  padding: 28px var(--gutter) 40px;
+  border-top: 1px solid var(--edge);
+  color: var(--grey);
+  font-size: 12px;
+}
+.credits { max-width: 120ch; margin-top: 8px; letter-spacing: .03em; text-transform: none; font-weight: 500; }
+
+/* ---------- Page 404 : un vol annulé ---------- */
+
+.not-found .section { display: flex; flex-direction: column; justify-content: center; gap: 28px; min-height: 100svh; border: 0; }
+.not-found .giant { color: var(--red); font-size: 30vw; font-weight: 800; font-stretch: 70%; line-height: .85; }
+.arrow { font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; text-decoration: none; border-bottom: 2px solid var(--red); }
+.arrow::before { content: "← "; }
+
+/* ============================================================
+   Écrans étroits
+   ============================================================ */
+
+@media (max-width: 760px) {
+  body { font-size: 18px; }
+  .bar { grid-template-columns: 1fr auto; }
+  .bar-clocks { display: none; }
+  .strip { font-size: 12px; padding: 8px 10px; }
+  .hero-role { text-align: left; }
+  .cols, .skills { grid-template-columns: minmax(0, 1fr); }
+
+  /* l'horaire : année et ville sur une ligne, le statut dessous ; la formation est dans le détail */
+  .timetable { --n: 12; }
+  .timetable .board-head { --c: calc(100cqi / (12 * 1.1)); }
+  .timetable .board-head .c-form, .timetable .board-head .c-state, .timetable .row .c-form { display: none; }
+  .timetable .row { flex-wrap: wrap; row-gap: 6px; }
+  .timetable .row .c-state { margin-left: calc(var(--c) * 5.4) !important; }
+  .stop { grid-template-columns: 120px minmax(0, 1fr); align-items: start; }
+
+  /* compétences : le niveau passe sous l'outil */
+  .skills .board:first-child { --n: 14; }
+  .skills .board:last-child { --n: 14; }
+  .skills .row { flex-wrap: wrap; row-gap: 6px; }
+  .skills .row > .flap + .flap { margin-left: 0; }
+  .skills .board-head span:last-child { display: none; }
+
+  .mail a { --c: calc((100vw - 2 * var(--gutter)) / 17.8); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
